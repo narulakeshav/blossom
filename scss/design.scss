@@ -1,11 +1,8 @@
 /* Importing Google Font */
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 @import url(https://fonts.googleapis.com/css?family=Lato:100);
 
 /* Color Declarations */
 $white: #FFF;
-$light-gray: #AAA;
-$gray: #7F8C8D;
 $primary: #EEE;
 $night: #465460;
 $pink: #FF4D89;
@@ -16,10 +13,9 @@ $background: #26313B;
 $transparent: transparent;
 
 /* Font Properties */
-$font: Open Sans;
-$light: 300;
-$normal: 400;
-$bold: 700;
+$font: Lato;
+$light: 100;
+$normal: 300;
 
 /* Mixins*/
 @mixin transition ($seconds) {
@@ -33,7 +29,7 @@ $bold: 700;
 body {
     background: $background;
     font-family: $font;
-    font-weight: $normal;
+    font-weight: $light;
     height: 100vh;
 }
 a:focus,
@@ -44,21 +40,19 @@ a:hover {
 /* Div Tags CSS */
 .key-button {
     background: $night;
+    color: $white;
     border: none;
     outline: 0;
     height: 70px;
     width: 70px;
     border-radius: 10px;
-    color: $white;
     padding-left: 15px;
-    font-weight: 100;
     font-size: 25px;
     text-align: center;
-    font-family: Lato;
 }
 ::-webkit-input-placeholder {
-   font-size: 25px;
    color: $white;
+   font-size: 25px;
 }
 .logo-box {
     position: fixed;
@@ -79,32 +73,31 @@ a:hover {
 .btn-start,
 .btn-start:focus {
     @include transition(0.3s);
+    background: $transparent;
+    border: 2px solid $primary;
+    font-weight: $normal;
+    color: $primary;
     margin: 20px 15px;
     height: 130px;
     width: 130px;
     border-radius: 100%;
-    background: $transparent;
-    border: 2px solid $primary;
-    color: $primary;
     font-size: 20px;
-    font-family: Lato;
-    font-weight: 300;
     text-transform: uppercase;
     outline: 0;
 }
 .btn-start:hover {
-    background: rgba(255,255,255,0.1);
     border-color: $white;
     color: $white;
+    background: rgba(255,255,255,0.1);
 }
 #reset,
 #reset:focus {
     @include transition(0.3s);
+    background: $pink;
+    color: $white;
     width: 45px;
     height: 45px;
     border-radius: 100%;
-    background: $pink;
-    color: $white;
     border: none;
     outline: 0;
     margin-top: 20px;
@@ -129,35 +122,31 @@ a:hover {
     box-shadow: none;
 }
 .progress-bar {
-    border-radius: 0;
     background: $pink;
+    border-radius: 0;
 }
 .progress-made {
     @include transition(0.5s);
+    font-weight: $normal;
     text-align: right;
     padding-right: 10px;
     color: #BBB;
-    font-weight: $normal;
 }
 
 /* Text CSS */
 #main-time {
-    padding-top: 0px;
     color: $primary;
+    padding-top: 0px;
     font-size: 180px;
-    font-family: Lato;
-    font-weight: 100;
     text-align: center;
     #ms {
-        font-size: 30px;
         color: $pink;
+        font-size: 30px;
     }
 }
 .work-for {
-    font-family: Lato;
-    font-weight: 100;
-    text-transform: uppercase;
     color: $white;
+    text-transform: uppercase;
     font-size: 22px;
 }
 
