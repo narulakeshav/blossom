@@ -1,0 +1,58 @@
+doctype html
+html
+    head
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(charset="UTF-8")
+
+        // Favicon and Title
+        title#page-title Blossom
+        link(rel='shortcut icon', href='logo.png')
+
+        // META TAGS
+        meta(property='og:title', content='Silicon')
+        meta(property='og:description', content='Silicon uses New York Times API that shows the most popular and top stories, as well as showing the top stories of everyday in each category including technology, business, politics, world, sports, and travel. Silicon also allows you to search for specific articles provided by NewYorkTimes Articles Search API.')
+        meta(property='og:site_name', content='NarulaKeshav')
+        meta(property='og:url', content='http://narulakeshav.com/app/silicon')
+        meta(property='og:image', content='http://i.imgur.com/RIDSnUY.png')
+
+        // CSS CDNs
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css')
+
+        // MY CSS FILE
+        link(rel='stylesheet', href='scss/design.css', media="all")
+    body
+        .logo-box
+            img.logo.img-responsive(src="logo.png")
+        .progress.row
+            .progress-bar(role='progressbar', id="timer-bar", aria-valuemin='0', aria-valuemax='100', style='width: 0%;')
+        .col-md-12
+            .col-md-12(align="center")
+                button#reset
+                    span.fa.fa-repeat
+            .col-md-8.col-md-offset-2
+                p#main-time 25:00
+                    span#ms 00
+                .col-md-8.col-md-offset-2
+                    .col-md-6(align="right")
+                        p.work-for Work For
+                        input.key-button(id="work", type="number", maxlength="2", placeholder="25", min="1", max="60")
+                        p.work-for Mins
+                    .col-md-6(align="left")
+                        p.work-for Break For
+                        input.key-button(id="break", type="number", maxlength="2", placeholder="5", min="1", max="60")
+                        p.work-for Mins
+                .col-md-8.col-md-offset-2(align="center")
+                        button.btn-start.wow.fadeInUp(id="start-stop") 
+                            span#btn-text start
+                        audio(id="audio", src="alarm.mp3")
+
+
+    // JAVASCRIPT CDNs
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js')
+
+    // MY JAVSCRIPT FILE
+    script(src='js/timer.js')
