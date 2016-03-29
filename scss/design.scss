@@ -27,6 +27,7 @@ $normal: 300;
 
 /* General CSS */
 body {
+    @include transition(0.75s);
     background: $background;
     font-family: $font;
     font-weight: $light;
@@ -39,6 +40,7 @@ a:hover {
 
 /* Div Tags CSS */
 .key-button {
+    @include transition(0.5s);
     background: $night;
     color: $white;
     border: none;
