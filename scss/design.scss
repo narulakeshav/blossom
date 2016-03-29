@@ -1,0 +1,166 @@
+/* Importing Google Font */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:100);
+
+/* Color Declarations */
+$white: #FFF;
+$light-gray: #AAA;
+$gray: #7F8C8D;
+$primary: #EEE;
+$night: #465460;
+$pink: #FF4D89;
+$dark-pink: #F0437D;
+
+/* Declaring Variables */
+$background: #26313B;
+$transparent: transparent;
+
+/* Font Properties */
+$font: Open Sans;
+$light: 300;
+$normal: 400;
+$bold: 700;
+
+/* Mixins*/
+@mixin transition ($seconds) {
+    -webkit-transition: all $seconds;
+    -moz-transition: all $seconds;
+    -ms-transition: all $seconds;
+    transition: all $seconds;
+}
+
+/* General CSS */
+body {
+    background: $background;
+    font-family: $font;
+    font-weight: $normal;
+    height: 100vh;
+}
+a:focus,
+a:hover {
+    text-decoration: none;
+}
+
+/* Div Tags CSS */
+.key-button {
+    background: $night;
+    border: none;
+    outline: 0;
+    height: 70px;
+    width: 70px;
+    border-radius: 10px;
+    color: $white;
+    padding-left: 15px;
+    font-weight: 100;
+    font-size: 25px;
+    text-align: center;
+    font-family: Lato;
+}
+::-webkit-input-placeholder {
+   font-size: 25px;
+   color: $white;
+}
+.logo-box {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+}
+
+/* Image CSS */
+.logo {
+    @include transition(0.1s);
+    width: 40px;
+    height: 40px;
+    opacity: 0.9;
+}
+
+/* Button CSS */
+.btn-start,
+.btn-start:focus {
+    @include transition(0.3s);
+    margin: 20px 15px;
+    height: 130px;
+    width: 130px;
+    border-radius: 100%;
+    background: $transparent;
+    border: 2px solid $primary;
+    color: $primary;
+    font-size: 20px;
+    font-family: Lato;
+    font-weight: 300;
+    text-transform: uppercase;
+    outline: 0;
+}
+.btn-start:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: $white;
+    color: $white;
+}
+#reset,
+#reset:focus {
+    @include transition(0.3s);
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background: $pink;
+    color: $white;
+    border: none;
+    outline: 0;
+    margin-top: 20px;
+    visibility: hidden;
+    span {
+        color: $white;
+        @include transition(0.5s);
+    }
+}
+#reset:hover {
+    span {
+        color: $white;
+        -webkit-transform: rotate(360deg);
+    }
+    background: $dark-pink;
+    color: $white;
+}
+.progress {
+    border-radius: 0;
+    height: 3px;
+    background: rgba(255,255,255,0.4);
+    box-shadow: none;
+}
+.progress-bar {
+    border-radius: 0;
+    background: $pink;
+}
+.progress-made {
+    @include transition(0.5s);
+    text-align: right;
+    padding-right: 10px;
+    color: #BBB;
+    font-weight: $normal;
+}
+
+/* Text CSS */
+#main-time {
+    padding-top: 0px;
+    color: $primary;
+    font-size: 180px;
+    font-family: Lato;
+    font-weight: 100;
+    text-align: center;
+    #ms {
+        font-size: 30px;
+        color: $pink;
+    }
+}
+.work-for {
+    font-family: Lato;
+    font-weight: 100;
+    text-transform: uppercase;
+    color: $white;
+    font-size: 22px;
+}
+
+/* Span CSS */
+
+/* Media Queries */
