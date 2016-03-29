@@ -146,21 +146,7 @@ $(document).ready(function() {
 	    }
 	    mainTime.innerHTML = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 	    ms.innerHTML = milliseconds > 9 ? milliseconds : "0" + milliseconds;
-	    if(minutes === 0 && seconds === 0 && milliseconds === 0) {
-	        clearInterval(t);
-	        if (typeof audio.loop == 'boolean') { audio.loop = true; }
-	        else {
-	            audio.addEventListener('ended', function() {
-	                this.currentTime = 0;
-	                this.play();
-	            }, false);
-	        }
-	        audio.play();
-	        mainTime.innerHTML = "Time is up!";
-	        $("#main-time").css("font-size", "140px");
-	        ms.innerHTML = "";
-	    }
-	    else timerTimeElapsed();
+	    timeIsUp();
 	    mainTime.appendChild(ms);
 	}
 
@@ -179,5 +165,26 @@ $(document).ready(function() {
 	    
 	    $(".progress-bar").css("width", progress + "%");
 	    updateProgressBar();
+	}
+
+	function timeIsUp() {
+		if(minutes === 0 && seconds === 0 && milliseconds === 0) {
+		    clearInterval(t);
+		    if (typeof audio.loop == 'boolean') { audio.loop = true; }
+		    else {
+		        audio.addEventListener('ended', function() {
+		            this.currentTime = 0;
+		            this.play();
+		        }, false);
+		    }
+		    audio.play();
+		    mainTime.innerHTML = "Time is up!";
+		    $("#main-time").css("font-size", "140px");
+		    ms.innerHTML = "";
+		    btnText.innerHTML = "STOP";
+		    $("body").css("background", "linear-gradient(45deg, #E74C3C, #C0392B)");
+		    $(".key-button").css("background", "rgba(255,255,255,0.2)");
+		}
+		else timerTimeElapsed();
 	}
 });
