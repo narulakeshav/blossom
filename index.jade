@@ -23,8 +23,7 @@ html
         // MY CSS FILE
         link(rel='stylesheet', href='scss/design.css', media="all")
     body
-        .logo-box
-            img.logo.img-responsive(src="pic.png")
+        img.logo.img-responsive(src="pic.png")
         .progress
             .progress-bar(role='progressbar', id="timer-bar", aria-valuemin='0', aria-valuemax='100', style='width: 0%;')
         .col-md-12
@@ -48,6 +47,9 @@ html
                             span#btn-text start
                         button.btn-restart#restart Restart
                         audio(id="audio", src="alarm.mp3")
+        a.btn-repo(href="https://github.com/NarulaKeshav/blossom", target="_blank")
+            span.fa.fa-github.fa-lg &nbsp; 
+            |  Repository
 
 
     // JAVASCRIPT CDNs
