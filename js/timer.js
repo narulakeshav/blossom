@@ -277,6 +277,7 @@ $(document).ready(function() {
 	 * ----------------------------------------------------------------
 	 * validateInput() - validates input for workTime
 	 * throwMessageIfInvalid() - alerts the user if invalid input
+	 * breakOrNot() - checks whether it's break time or not
 	 * applyDefaultSettings() - changes settings/colors to default
 	 * changeStyle() - simplifies and styles CSS properties
 	 * ----------------------------------------------------------------
