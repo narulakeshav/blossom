@@ -34,8 +34,7 @@ $(document).ready(function() {
 	 * isBreakTime - true if it's break time
 	 * ----------------------------------------------------------------
 	 */
-	var stopThenStart = false;
-	var isBreakTime = true;
+	var stopThenStart, isBreakTime = false;
 
 	/* On Click Functions
 	 * ----------------------------------------------------------------
@@ -83,6 +82,7 @@ $(document).ready(function() {
         // Sets variable to false
         stopThenStart = false;
         validInput = false;
+        isBreakTime = false;
 
         // Resets input value
         workTime.value = "";
@@ -107,6 +107,7 @@ $(document).ready(function() {
 		minutes = seconds = milliseconds = 0;
 		minutes = workTime.value;
 		if(minutes === "") { minutes = 25; }
+		breakOrNot();
 
 		// Checks whether the timer was stopped before or not
 		if(stopThenStart) {
@@ -177,19 +178,17 @@ $(document).ready(function() {
 	 * ----------------------------------------------------------------
 	 */
 	function progressTheBar() {
-	    var splitTime = mainTime.innerHTML.split(":");
-	  	
-	    var currentTimeInSeconds = (parseInt(splitTime[0] * 60)) + parseInt(splitTime[1]);
-
-	    var actualTime = workTime.value;
-	    var totalTime = (parseInt(actualTime[0] * 60));
-
-	    var elapsedTime = totalTime - currentTimeInSeconds;
+		var splitTime, actualTime, currentTimeInSeconds, totalTime, elapsedTime;
+		splitTime = mainTime.innerHTML.split(":");
+	    actualTime = workTime.value;
 	    if(isBreakTime) {
+	    	splitTime = mainTime.innerHTML.split(":");
 	    	actualTime = breakTime.value;
-	    	totalTime = (parseInt(actualTime[0] * 60));
 	    }
+	    currentTimeInSeconds = (parseInt(splitTime[0] * 60)) + parseInt(splitTime[1]);
+	    totalTime = (parseInt(actualTime[0] * 60));
 
+	    elapsedTime = totalTime - currentTimeInSeconds;
 	    progress = (elapsedTime / totalTime) * 100;
 	    
 	    $(".progress-bar").css("width", progress + "%");
@@ -203,7 +202,6 @@ $(document).ready(function() {
 	 * ----------------------------------------------------------------
 	*/
 	function timeForBreak() {
-		isBreakTime = false;
 		progess = minutes = seconds = milliseconds = 0;
 		btnText.innerHTML = breakTime.value + " MIN BREAK";
 		changeStyle(".progress-bar", "background", "#F5F5F5");
@@ -227,7 +225,7 @@ $(document).ready(function() {
 		}
 
 		// Otherwise convert the input to time and update timer
-		else { convertInputToTime(minutes, seconds); }
+		else convertInputToTime(minutes, seconds);
 	}
 
 	function timeIsUp() {
@@ -241,9 +239,11 @@ $(document).ready(function() {
 		        }, false);
 		    }
 		    audio.play();
-		    mainTime.innerHTML = "Time is up!";
-		    ms.innerHTML = "";
-		    btnText.innerHTML = "TIME ENDED";
+		    if(!isBreakTime) {
+		    	mainTime.innerHTML = "Time is up!";
+		    	ms.innerHTML = "";
+		    	btnText.innerHTML = "TIME ENDED";
+		    }
 		    
 		    workTime.readyOnly = true;
 		    breakTime.readyOnly = true;
@@ -256,7 +256,10 @@ $(document).ready(function() {
 		    changeStyle("#reset", "background", "#FFF");
 		    changeStyle(".fa-repeat", "color", "#CD3F30");
 
-		    if(isBreakTime) timeForBreak();
+		    if(isBreakTime) { 
+		    	timeForBreak();
+		    	isBreakTime = false;
+		    }
 		    else {
 		    	changeStyle("#start-stop", "display", "none");
 		    	changeStyle("#restart", "display", "inline");
@@ -265,6 +268,7 @@ $(document).ready(function() {
 		    		$("#reset").trigger("click");
 		    	});
 		    }
+		    breakOrNot();
 		}
 		else timerTimeElapsed();
 	}
@@ -287,9 +291,15 @@ $(document).ready(function() {
 		workTime.value = "";
 		alert("Please enter time in minutes from 1-60.");
 	}
+
+	function breakOrNot() {
+		if(isBreakTime) isBreakTime = false;
+		else isBreakTime = true;
+	}
+
 	function applyDefaultSettings() {
 		if($(window).width() <= 768) changeStyle("#main-time", "font-size", "23vw");
-		else changeStyle("#main-time", "font-size", "14vw");
+		else changeStyle("#main-time", "font-size", "12vw");
 		if($(window).width() <= 768) changeStyle("#ms", "font-size", "8vw");
 		changeStyle("body", "background", "#26313B");
 		changeStyle(".key-button", "background", "#465460");
