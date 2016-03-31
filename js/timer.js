@@ -39,8 +39,8 @@ $(document).ready(function() {
 
 	/* On Click Functions
 	 * ----------------------------------------------------------------
-	 * button.onclick() - starts the timer if the button is clicked
-	 * reset.onclick() - resets time and inputs on button click
+	 * button.onclick() - starts the timer on start button
+	 * reset.onclick() - resets time and inputs on reset button
 	 * ----------------------------------------------------------------
 	 */
 	button.onclick = function() {
@@ -55,7 +55,7 @@ $(document).ready(function() {
 			else {
 				btnText.innerHTML = "start";
 				stopCountdown();
-				changeStyle("#reset", "visibility", "visibile");
+				changeStyle("#reset", "visibility", "visible");
 				changeStyle("#reset", "-webkit-transform", "translate(0px, 0px)");
 				changeStyle("#reset", "opacity", "1");
 			}
@@ -63,6 +63,8 @@ $(document).ready(function() {
 		else {
 			throwMessageIfInvalid();
 		}
+		workTime.readOnly = true;
+		breakTime.readOnly = true;
 	};
 
 	reset.onclick = function() {
@@ -85,6 +87,8 @@ $(document).ready(function() {
         // Resets input value
         workTime.value = "";
         breakTime.value = "";
+        workTime.readOnly = false;
+        breakTime.readOnly = false;
 
         changeStyle("#reset", "-webkit-transform", "translate(0px, -20px)");
         changeStyle("#reset", "opacity", "0");
@@ -205,7 +209,7 @@ $(document).ready(function() {
 		changeStyle(".progress-bar", "background", "#F5F5F5");
 		$("#reset").click(applyDefaultSettings);
 
-		ms.style.color = "#BA3427";
+		ms.style.color = "#A62D21";
 		ms.style.fontWeight = "300";
 
 		if(breakTime.value === "")  minutes = 5;
@@ -240,14 +244,25 @@ $(document).ready(function() {
 		    mainTime.innerHTML = "Time is up!";
 		    ms.innerHTML = "";
 		    btnText.innerHTML = "TIME ENDED";
+		    
+		    workTime.readyOnly = true;
+		    breakTime.readyOnly = true;
 
 		    changeStyle("#main-time", "font-size", "140px");
 		    changeStyle("body", "background", "linear-gradient(45deg, #E74C3C, #C0392B)");
 		    changeStyle(".key-button","background", "rgba(255,255,255,0.2)");
 		    changeStyle("#reset", "background", "#FFF");
 		    changeStyle(".fa-repeat", "color", "#CD3F30");
+
 		    if(isBreakTime) timeForBreak();
-		    else $("#reset").click(applyDefaultSettings);
+		    else {
+		    	changeStyle("#start-stop", "display", "none");
+		    	changeStyle("#restart", "display", "inline");
+		    	$("#restart").click(function() {
+		    		applyDefaultSettings();
+		    		$("#reset").trigger("click");
+		    	});
+		    }
 		}
 		else timerTimeElapsed();
 	}
@@ -277,10 +292,14 @@ $(document).ready(function() {
 		changeStyle("#reset", "background", "#FF4D89");
 		changeStyle(".fa-repeat", "color", "#FFF");
 		changeStyle(".progress-bar", "background", "#FF4D89");
+		changeStyle("#start-stop", "display", "inline");
+		changeStyle("#restart", "display", "none");
+
 		ms.style.color = "#FF4D89";
 		ms.style.fontWeight = "100";
 
 		ms.innerHTML = "00";
+		btnText.innerHTML = "Start";
 		$("#start-stop").prop("disabled", false);
 		isBreakTime = false;
 	}
