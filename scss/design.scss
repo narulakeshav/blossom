@@ -56,16 +56,14 @@ a:hover {
    color: $white;
    font-size: 25px;
 }
-.logo-box {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    padding: 10px;
-}
 
 /* Image CSS */
 .logo {
     @include transition(0.1s);
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    margin: 10px;
     width: 40px;
     height: 40px;
 }
@@ -137,6 +135,26 @@ a:hover {
     color: $white;
     background: rgba(255,255,255,0.1);
 }
+.btn-repo,
+.btn-repo:focus {
+    @include transition(0.3s);
+    background: $transparent;
+    border: 2px solid rgba(255,255,255,0.4);
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 16px;
+    border-radius: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    outline: 0;
+}
+.btn-repo:hover {
+    border-color: $white;
+    color: $white;
+}
 
 /* Progress Bar CSS */
 .progress {
@@ -160,8 +178,9 @@ a:hover {
 /* Text CSS */
 #main-time {
     color: $primary;
-    font-size: 14vw;
+    font-size: 12vw;
     text-align: center;
+    padding: 0;
     #ms {
         color: $pink;
         font-size: 3.5vw;
@@ -170,7 +189,8 @@ a:hover {
 .work-for {
     color: $white;
     text-transform: uppercase;
-    font-size: 22px;
+    font-size: 20px;
+    padding: 0;
 }
 
 /* Span CSS */
