@@ -248,7 +248,9 @@ $(document).ready(function() {
 		    workTime.readyOnly = true;
 		    breakTime.readyOnly = true;
 
-		    changeStyle("#main-time", "font-size", "140px");
+		    if($(window).width() <= 768) changeStyle("#main-time", "font-size", "18vw");
+		    else changeStyle("#main-time", "font-size", "12vw");
+		    if($(window).width() <= 768) changeStyle("#ms", "font-size", "7vw");
 		    changeStyle("body", "background", "linear-gradient(45deg, #E74C3C, #C0392B)");
 		    changeStyle(".key-button","background", "rgba(255,255,255,0.2)");
 		    changeStyle("#reset", "background", "#FFF");
@@ -286,7 +288,9 @@ $(document).ready(function() {
 		alert("Please enter time in minutes from 1-60.");
 	}
 	function applyDefaultSettings() {
-		changeStyle("#main-time", "font-size", "170px");
+		if($(window).width() <= 768) changeStyle("#main-time", "font-size", "23vw");
+		else changeStyle("#main-time", "font-size", "14vw");
+		if($(window).width() <= 768) changeStyle("#ms", "font-size", "8vw");
 		changeStyle("body", "background", "#26313B");
 		changeStyle(".key-button", "background", "#465460");
 		changeStyle("#reset", "background", "#FF4D89");
