@@ -286,7 +286,7 @@ $(document).ready(function() {
 		alert("Please enter time in minutes from 1-60.");
 	}
 	function applyDefaultSettings() {
-		changeStyle("#main-time", "font-size", "180px");
+		changeStyle("#main-time", "font-size", "170px");
 		changeStyle("body", "background", "#26313B");
 		changeStyle(".key-button", "background", "#465460");
 		changeStyle("#reset", "background", "#FF4D89");
