@@ -15,33 +15,49 @@ $(document).ready(function() {
 	var workTime = d.getElementById("work");
 	var breakTime = d.getElementById("break");
 
-	/* Getting time for the timer and stopwatch */
-	var minutes = 0;
-	var seconds = 0;
-	var milliseconds = 0;
-	var t;
-	var p;
-	var progress = 0;
+	/* Getting time for the timer and stopwatch
+	 * ----------------------------------------------------------------
+	 * minutes - time in minutes
+	 * seconds - time in seconds
+	 * milliseconds - time in milliseconds
+	 * progress - progress from 1 to 100
+	 * t - timer variable
+	 * p - progress bar variable
+	 * ----------------------------------------------------------------
+	 */
+	var minutes, seconds, milliseconds, progress = 0;
+	var t, p;
 
-	// TIMER OPERATIONS
+	/* Boolean Values
+	 * ----------------------------------------------------------------
+	 * stopThenStart - true if timer is/was stopped or paused
+	 * isBreakTime - true if it's break time
+	 * ----------------------------------------------------------------
+	 */
 	var stopThenStart = false;
+	var isBreakTime = true;
 
-	/* Starts the timer if the button is clicked */
+	/* On Click Functions
+	 * ----------------------------------------------------------------
+	 * button.onclick() - starts the timer if the button is clicked
+	 * reset.onclick() - resets time and inputs on button click
+	 * ----------------------------------------------------------------
+	 */
 	button.onclick = function() {
 		if(validateInput()) {
 			if(btnText.innerHTML == "start") {
 				btnText.innerHTML = "pause";
 				startCountdown();
-				$("#reset").css("visibility", "hidden");
-				$("#reset").css("-webkit-transform", "translate(0px, -20px)");
-				$("#reset").css("opacity", "0");
+				changeStyle("#reset", "visibility", "hidden");
+				changeStyle("#reset", "-webkit-transform", "translate(0px, -20px)");
+				changeStyle("#reset", "opacity", "0");
 			}
 			else {
 				btnText.innerHTML = "start";
 				stopCountdown();
-				$("#reset").css("visibility", "visible");
-				$("#reset").css("-webkit-transform", "translate(0px, 0px)");
-				$("#reset").css("opacity", "1");
+				changeStyle("#reset", "visibility", "visibile");
+				changeStyle("#reset", "-webkit-transform", "translate(0px, 0px)");
+				changeStyle("#reset", "opacity", "1");
 			}
 		}
 		else {
@@ -49,10 +65,9 @@ $(document).ready(function() {
 		}
 	};
 
-	/* Resets time and inputs on button click */
 	reset.onclick = function() {
 		progress = minutes = seconds = milliseconds = 0;
-		$(".progress-bar").css("width", progress + "%");
+		changeStyle(".progress-bar", "width", progress + "%");
 
 		// Stops the audio and reset its time
         audio.pause();
@@ -68,27 +83,25 @@ $(document).ready(function() {
         validInput = false;
 
         // Resets input value
-        work.value = "";
+        workTime.value = "";
+        breakTime.value = "";
 
-        $("#reset").css("-webkit-transform", "translate(0px, -20px)");
-        $("#reset").css("opacity", "0");
+        changeStyle("#reset", "-webkit-transform", "translate(0px, -20px)");
+        changeStyle("#reset", "opacity", "0");
 	};
 
-	function validateInput() {
-		var input = work.value;
-		if(input >= 1 && input <= 60 || input === "") return true;
-		return false;
-	}
 
-	function throwMessageIfInvalid() {
-		work.value = "";
-		alert("Please enter time in minutes from 1-60.");
-	}
+	/* Timer Start and Reset Functions 
+	 * ----------------------------------------------------------------
+	 * startCountdown() - starts coundown timer
+	 * stopCountdown() - stops the timer time when button is clicked
+	 * ----------------------------------------------------------------
+	 */
 
 	function startCountdown() {
 		// Gets the minutes from the input
 		minutes = seconds = milliseconds = 0;
-		minutes = work.value;
+		minutes = workTime.value;
 		if(minutes === "") { minutes = 25; }
 
 		// Checks whether the timer was stopped before or not
@@ -103,7 +116,6 @@ $(document).ready(function() {
 		else { convertInputToTime(minutes, seconds); }
 	}
 
-	/* Stops the timer time when button is clicked */
 	function stopCountdown() {
 		clearTimeout(t);
 		// If audio is playing, stops the audio and changes time to 0
@@ -112,19 +124,16 @@ $(document).ready(function() {
 		stopThenStart = true;
 	}
 
-	/* Updates the time every 15 milliseconds */
-	function timerTimeElapsed() {
-	    t = setTimeout(updateTimer, 15.8);
-	}
-
-	/* Updates the progress bar every millisecond */
-    function updateProgressBar() {
-        p = setTimeout(progressTheBar, 1);
-    }
-
-	/* Grabs the input data and converts it to a string, which is displayed and input is hidden*/
+	/* Time & Progress Update Functions
+	 * ----------------------------------------------------------------
+	 * convertInputToTime() - grabs the input data and converts it to a string
+	 * updateTimer() - updates the timer time and converts to necessary format
+	 * timerTimeElapsed() - updates the time every 15 milliseconds
+	 * updateProgressBar() - updates the progress bar every millisecond
+	 * ----------------------------------------------------------------
+	 */
 	function convertInputToTime(min, sec) {
-		$(".progress-bar").css("width", "0%");
+		changeStyle(".progress-bar", "width", "0%");
 
 	    mainTime.innerHTML = min + ":" + sec; 
 	    ms.innerHTML = "60";
@@ -133,7 +142,6 @@ $(document).ready(function() {
 	    updateTimer();
 	}
 
-	/* Updates the timer time and converts to necessary format */
 	function updateTimer() {
 	    milliseconds--;
 	    if(milliseconds < 0) {
@@ -146,25 +154,76 @@ $(document).ready(function() {
 	    }
 	    mainTime.innerHTML = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 	    ms.innerHTML = milliseconds > 9 ? milliseconds : "0" + milliseconds;
+
 	    timeIsUp();
 	    mainTime.appendChild(ms);
 	}
 
-	/* Progresses the progress bar by taking elapsed time / totalTime */
+	function timerTimeElapsed() {
+	    t = setTimeout(updateTimer, 15.8);
+	}
+
+    function updateProgressBar() {
+        p = setTimeout(progressTheBar, 1);
+    }
+
+	/* Progress Bar Functions 
+	 * ----------------------------------------------------------------
+	 * progressTheBar() - progresses the progress bar by taking elapsed time / totalTime
+	 * ----------------------------------------------------------------
+	 */
 	function progressTheBar() {
 	    var splitTime = mainTime.innerHTML.split(":");
 	  	
 	    var currentTimeInSeconds = (parseInt(splitTime[0] * 60)) + parseInt(splitTime[1]);
 
-	    var actualTime = work.value;
+	    var actualTime = workTime.value;
 	    var totalTime = (parseInt(actualTime[0] * 60));
 
 	    var elapsedTime = totalTime - currentTimeInSeconds;
+	    if(isBreakTime) {
+	    	actualTime = breakTime.value;
+	    	totalTime = (parseInt(actualTime[0] * 60));
+	    }
 
-	    progress = (elapsedTime / totalTime ) * 100;
+	    progress = (elapsedTime / totalTime) * 100;
 	    
 	    $(".progress-bar").css("width", progress + "%");
 	    updateProgressBar();
+	}
+
+	/* Secondary Functions 
+	 * ----------------------------------------------------------------
+	 * timeForBreak() - updates color and calculates break time
+	 * timeIsUp() - changes background color and starts break time
+	 * ----------------------------------------------------------------
+	*/
+	function timeForBreak() {
+		isBreakTime = false;
+		progess = minutes = seconds = milliseconds = 0;
+		btnText.innerHTML = breakTime.value + " MIN BREAK";
+		changeStyle(".progress-bar", "background", "#F5F5F5");
+		$("#reset").click(applyDefaultSettings);
+
+		ms.style.color = "#BA3427";
+		ms.style.fontWeight = "300";
+
+		if(breakTime.value === "")  minutes = 5;
+		else {
+			minutes = breakTime.value;
+			ms.innerHTML = "60";
+		}
+
+		// Checks whether the timer was stopped before or not
+		if(stopThenStart) {
+		    var split = mainTime.innerHTML.split(":");
+		    minutes = parseInt(split[0]);
+		    seconds = parseInt(split[1]);
+		    convertInputToTime(minutes, seconds);
+		}
+
+		// Otherwise convert the input to time and update timer
+		else { convertInputToTime(minutes, seconds); }
 	}
 
 	function timeIsUp() {
@@ -179,12 +238,54 @@ $(document).ready(function() {
 		    }
 		    audio.play();
 		    mainTime.innerHTML = "Time is up!";
-		    $("#main-time").css("font-size", "140px");
 		    ms.innerHTML = "";
-		    btnText.innerHTML = "STOP";
-		    $("body").css("background", "linear-gradient(45deg, #E74C3C, #C0392B)");
-		    $(".key-button").css("background", "rgba(255,255,255,0.2)");
+		    btnText.innerHTML = "TIME ENDED";
+
+		    changeStyle("#main-time", "font-size", "140px");
+		    changeStyle("body", "background", "linear-gradient(45deg, #E74C3C, #C0392B)");
+		    changeStyle(".key-button","background", "rgba(255,255,255,0.2)");
+		    changeStyle("#reset", "background", "#FFF");
+		    changeStyle(".fa-repeat", "color", "#CD3F30");
+		    if(isBreakTime) timeForBreak();
+		    else $("#reset").click(applyDefaultSettings);
 		}
 		else timerTimeElapsed();
+	}
+
+	/* Helper Methods
+	 * ----------------------------------------------------------------
+	 * validateInput() - validates input for workTime
+	 * throwMessageIfInvalid() - alerts the user if invalid input
+	 * applyDefaultSettings() - changes settings/colors to default
+	 * changeStyle() - simplifies and styles CSS properties
+	 * ----------------------------------------------------------------
+	 */
+	function validateInput() {
+		var input = workTime.value;
+		if(input >= 1 && input <= 60 || input === "") return true;
+		return false;
+	}
+
+	function throwMessageIfInvalid() {
+		workTime.value = "";
+		alert("Please enter time in minutes from 1-60.");
+	}
+	function applyDefaultSettings() {
+		changeStyle("#main-time", "font-size", "180px");
+		changeStyle("body", "background", "#26313B");
+		changeStyle(".key-button", "background", "#465460");
+		changeStyle("#reset", "background", "#FF4D89");
+		changeStyle(".fa-repeat", "color", "#FFF");
+		changeStyle(".progress-bar", "background", "#FF4D89");
+		ms.style.color = "#FF4D89";
+		ms.style.fontWeight = "100";
+
+		ms.innerHTML = "00";
+		$("#start-stop").prop("disabled", false);
+		isBreakTime = false;
+	}
+
+	function changeStyle(element, property, value) {
+		$(element).css(property, value);
 	}
 });
