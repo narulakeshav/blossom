@@ -116,6 +116,29 @@ a:hover {
     background: $dark-pink;
     color: $white;
 }
+.btn-restart,
+.btn-restart:focus {
+    @include transition(0.3s);
+    background: $transparent;
+    border: 2px solid $primary;
+    font-weight: $normal;
+    color: $primary;
+    margin: 20px 15px;
+    height: 130px;
+    width: 130px;
+    border-radius: 100%;
+    font-size: 20px;
+    text-transform: uppercase;
+    outline: 0;
+    display: none;
+}
+.btn-restart:hover {
+    border-color: $white;
+    color: $white;
+    background: rgba(255,255,255,0.1);
+}
+
+/* Progress Bar CSS */
 .progress {
     border-radius: 0;
     height: 3px;
