@@ -160,12 +160,11 @@ a:hover {
 /* Text CSS */
 #main-time {
     color: $primary;
-    padding-top: 0px;
-    font-size: 170px;
+    font-size: 14vw;
     text-align: center;
     #ms {
         color: $pink;
-        font-size: 30px;
+        font-size: 3.5vw;
     }
 }
 .work-for {
@@ -177,3 +176,25 @@ a:hover {
 /* Span CSS */
 
 /* Media Queries */
+@media(max-width: 768px) {
+    #main-time {
+        padding-top: 20px;
+        font-size: 23vw;
+        #ms {
+            padding-left: 3px;
+            font-size: 8vw;
+        }
+    }
+    .work-for {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+    .btn-start,
+    .btn-start:focus,
+    .btn-restart,
+    .btn-restart:focus {
+        margin-top: 20px;
+        width: 120px;
+        height: 120px;
+    }
+}
