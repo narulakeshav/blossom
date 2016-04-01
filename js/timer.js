@@ -81,7 +81,7 @@ $(document).ready(function() {
         breakTime.readOnly = false;
 
         // Resets mainTime
-        mainTime.innerHTML = "2:00";
+        mainTime.innerHTML = "25:00";
         ms.innerHTML = "00";
         mainTime.appendChild(ms);
 
