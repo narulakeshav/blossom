@@ -59,9 +59,7 @@ $(document).ready(function() {
 				changeStyle("#reset", "opacity", "1");
 			}
 		}
-		else {
-			throwMessageIfInvalid();
-		}
+		else throwMessageIfInvalid();
 		workTime.readOnly = true;
 		breakTime.readOnly = true;
 	};
@@ -107,7 +105,6 @@ $(document).ready(function() {
 		minutes = seconds = milliseconds = 0;
 		minutes = workTime.value;
 		if(minutes === "") { minutes = 25; }
-		breakOrNot();
 
 		// Checks whether the timer was stopped before or not
 		if(stopThenStart) {
@@ -181,7 +178,7 @@ $(document).ready(function() {
 		var splitTime, actualTime, currentTimeInSeconds, totalTime, elapsedTime;
 		splitTime = mainTime.innerHTML.split(":");
 	    actualTime = workTime.value;
-	    if(isBreakTime) {
+	    if(breakOrNot() === true) {
 	    	splitTime = mainTime.innerHTML.split(":");
 	    	actualTime = breakTime.value;
 	    }
@@ -215,6 +212,8 @@ $(document).ready(function() {
 			minutes = breakTime.value;
 			ms.innerHTML = "60";
 		}
+
+		isBreakTime = false;
 
 		// Checks whether the timer was stopped before or not
 		if(stopThenStart) {
