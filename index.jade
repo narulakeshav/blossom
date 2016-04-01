@@ -39,20 +39,20 @@ html
                 button#reset
                     span.fa.fa-repeat
             .col-md-12
-                p#main-time 25:00
+                p#main-time.wow.bounceInDown 25:00
                     span#ms 00
                 .col-sm-8.col-sm-offset-2
                     .col-sm-12(align="center")
-                        .side(align="right")
+                        .side.wow.bounceIn(data-wow-delay="0.5s", align="right")
                             p.work-for Work For
                             input.key-button(id="work", type="number", maxlength="2", placeholder="25", min="1", max="60")
                             p.work-for Mins
-                        .side(align="left")
+                        .side.wow.bounceIn(data-wow-delay="0.5s", align="left")
                             p.work-for Break For
                             input.key-button(id="break", type="number", maxlength="2", placeholder="25", min="1", max="60")
                             p.work-for Mins
                 .col-md-8.col-md-offset-2(align="center")
-                        button.btn-start.wow.fadeInUp(id="start-stop") 
+                        button.btn-start.wow.bounceInUp(id="start-stop") 
                             span#btn-text start
                         button.btn-restart#restart Restart
                         audio(id="audio", src="alarm.mp3")
