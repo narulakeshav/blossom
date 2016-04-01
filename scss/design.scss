@@ -196,14 +196,12 @@ a:hover {
     margin: 2px 6px;
 }
 
-/* Span CSS */
-
 /* Media Queries */
 @media(max-width: 768px) {
     #main-time {
         padding-top: 10px;
         font-size: 23vw;
-        font-weight: $light;
+        font-weight: $normal;
         #ms {
             font-weight: $normal;
             padding-left: 3px;
