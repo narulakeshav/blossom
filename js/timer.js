@@ -135,6 +135,7 @@ $(document).ready(function() {
      * updateTimer() - updates the timer time and converts to necessary format
      * timerTimeElapsed() - updates the time every 15 milliseconds
      * updateProgressBar() - updates the progress bar every millisecond
+     * updateBreakProgress() - updates break progress bar every ms
      * ----------------------------------------------------------------
      */
     function convertInputToTime(min, sec, val) {
@@ -180,6 +181,7 @@ $(document).ready(function() {
     /* Progress Bar Functions 
      * ----------------------------------------------------------------
      * progressTheBar() - progresses the progress bar by taking elapsed time / totalTime
+     * progressBarBreak() - progress bar for break time
      * ----------------------------------------------------------------
      */
     function progressTheBar() {
@@ -294,6 +296,7 @@ $(document).ready(function() {
      * throwMessageIfInvalid() - alerts the user if invalid input
      * applyDefaultSettings() - changes settings/colors to default
      * changeStyle() - simplifies and styles CSS properties
+     * computeProgress() - finds progress in terms of percentage
      * ----------------------------------------------------------------
      */
     function validateInput() {
