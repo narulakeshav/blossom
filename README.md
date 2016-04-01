@@ -12,7 +12,7 @@ Blossom is a pomodoro clock applications that helps you manage time, by allowing
 * Bootstrap
 
 # How it Works
-As simple as Blossom looks, it was just as abstract to build it. I grabbed the time form the `input` and convert them into `strings`. Then by creating `minutes`, `seconds`, and `milliseconds` variables, I was able to update the time. For progress bar, I took the `work time` and subtracted it to the time on the screen, which gave me the elapsed time. Then:
+As simple as Blossom looks, it was just as abstract to build it. I grabbed the time form the `input` and convert them into `strings`. Then by creating `minutes`, `seconds`, and `milliseconds` variables, I was able to update the time. For progress bar, I took the work time by `user` and subtracted it to the time on the `screen`, which gave me the `elapsed time`. To get the progress bar to move, I change its width:
 ```
 progress = (elapsedTime / totalTime) * 100;
 
@@ -26,7 +26,7 @@ function updateProgressBar() {
 ```
 
 # Design
-I wanted to keep the design simple, elegant, and flat. I tested out many color schemes but I stuck with the dark navy blue `#26313B` and pink `#FF4D89`. I liked how the app turned out to be. It's clutter free, which helps focus more.
+I wanted to keep the design simple, elegant, and flat. I tested out many color schemes but I stuck with the dark navy blue `#26313B` and pink `#FF4D89`. I liked how the app turned out to be. It's clutter free, which helps me, as a user, focus more.
 
 # One Problem
 One problem that I'm currently having is to get `setInterval()` to work when the tab in inactive on the browser. I am not sure how to do that, so if you'd like to help and contribute, feel free to make a new pull request :)
