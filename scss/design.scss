@@ -39,22 +39,22 @@ a:hover {
 }
 
 /* Div Tags CSS */
-.key-button {
-    @include transition(0.5s);
-    background: $night;
-    color: $white;
-    border: none;
-    outline: 0;
-    height: 70px;
-    width: 70px;
-    border-radius: 10px;
-    padding-left: 15px;
-    font-size: 25px;
-    text-align: center;
-}
 ::-webkit-input-placeholder {
-   color: $white;
+   color: rgba(255,255,255,0.5);
    font-size: 25px;
+}
+.key-button {
+    background: $night;
+    border: none;
+    width: 70px;
+    height: 70px;
+    outline: 0;
+    font-weight: 100;
+    border-radius: 10px;
+    font-size: 25px;
+    padding-left: 20px;
+    outline: 0;
+    color: $white;
 }
 
 /* Image CSS */
@@ -191,15 +191,21 @@ a:hover {
     font-size: 20px;
     padding: 0;
 }
+.side {
+    display: inline-block;
+    margin: 2px 6px;
+}
 
 /* Span CSS */
 
 /* Media Queries */
 @media(max-width: 768px) {
     #main-time {
-        padding-top: 20px;
+        padding-top: 10px;
         font-size: 23vw;
+        font-weight: $light;
         #ms {
+            font-weight: $normal;
             padding-left: 3px;
             font-size: 8vw;
         }
@@ -207,6 +213,7 @@ a:hover {
     .work-for {
         font-size: 16px;
         margin-top: 10px;
+        font-weight: $normal;
     }
     .btn-start,
     .btn-start:focus,
@@ -215,5 +222,9 @@ a:hover {
         margin-top: 20px;
         width: 120px;
         height: 120px;
+        font-weight: $normal;
+    }
+    .btn-repo {
+        font-weight: $normal;
     }
 }
