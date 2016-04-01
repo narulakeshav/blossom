@@ -1,5 +1,5 @@
 # Blossom
-Blossom is a pomodoro clock applications that helps you manage time, by allowing you to work for 25 minutes, followed by a 5 minutes of break time. You can also set work and break time accordingly and alarm will ring when time is over.
+Blossom is a pomodoro clock application that helps you manage time, by allowing you to work for 25 minutes, followed by a 5 minutes of break time. You can also set work and break time accordingly and alarm will ring when time is over.
 <br><br>
 [http://narulakeshav.com](http://narulakeshav.com/app/blossom)
 <br><br>
