@@ -60,10 +60,10 @@ $(document).ready(function() {
                 changeStyle("#reset", "-webkit-transform", "translate(0px, 0px)");
                 changeStyle("#reset", "opacity", "1");
             }
+            workTime.readOnly = true;
+            breakTime.readOnly = true;
         }
         else throwMessageIfInvalid();
-        workTime.readOnly = true;
-        breakTime.readOnly = true;
     };
 
     reset.onclick = function() {
@@ -81,7 +81,7 @@ $(document).ready(function() {
         breakTime.readOnly = false;
 
         // Resets mainTime
-        mainTime.innerHTML = "25:00";
+        mainTime.innerHTML = "2:00";
         ms.innerHTML = "00";
         mainTime.appendChild(ms);
 
@@ -220,18 +220,13 @@ $(document).ready(function() {
             ms.innerHTML = "60";
         }
         btnText.innerHTML = breakTime.value + " MIN BREAK";
-        console.log("btnText value: " + btnText.innerHTML);
         changeStyle(".progress-bar", "background", "#F5F5F5");
         $("#reset").click(applyDefaultSettings);
 
         ms.style.color = "#A62D21";
         ms.style.fontWeight = "300";
 
-        console.log("Everything is 0");
-        console.log("Val: " + firstTimeZero);
-        console.log("Check Val: " + firstTimeZeroCheck);
         firstTimeZeroCheck = false;
-        console.log("Updated Check Val: " + firstTimeZeroCheck);
 
         // Checks whether the timer was stopped before or not
         if(stopThenStart) {
@@ -247,7 +242,7 @@ $(document).ready(function() {
 
     function timeIsUp() {
         if(minutes === 0 && seconds === 0 && milliseconds === 0) {
-            console.log("Called");
+
             clearInterval(t);
             if (typeof audio.loop == 'boolean') { audio.loop = true; }
             else {
@@ -272,7 +267,7 @@ $(document).ready(function() {
             
             // If it's break time, call some function
             if(firstTimeZeroCheck === firstTimeZero) {
-                console.log("time for break is called");
+    
                 timeForBreak();
             }
             
@@ -307,6 +302,9 @@ $(document).ready(function() {
 
     function throwMessageIfInvalid() {
         workTime.value = "";
+        breakTime.value = "";
+        workTime.readOnly = false;
+        breakTime.readOnly = false;
         alert("Please enter time in minutes from 1-60.");
     }
 
