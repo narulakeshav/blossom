@@ -1,7 +1,7 @@
 # Blossom
 Blossom is a pomodoro clock application that helps you manage time, by allowing you to work for 25 minutes, followed by a 5 minutes of break time. You can also set work and break time accordingly and alarm will ring when time is over.
 <br><br>
-[http://narulakeshav.com](http://narulakeshav.com/app/blossom)
+[http://narulakeshav.com/app/blossom](http://narulakeshav.com/app/blossom)
 <br><br>
 ![Screenshot](http://i.imgur.com/kMp3HBO.jpg)
 
@@ -10,6 +10,9 @@ Blossom is a pomodoro clock application that helps you manage time, by allowing 
 * Sass
 * JavaScript/jQuery
 * Bootstrap
+
+# Alarm
+The Alarm ringtone that I used DOES NOT BELONG TO ME. The ringtone is from the app called [Sleep Cycle](http://www.sleepcycle.com/) called *warm breeze*. All rights are reserved to them!!
 
 # How it Works
 As simple as Blossom looks, it was just as abstract to build it. I grabbed the time form the `input` and convert them into `strings`. Then by creating `minutes`, `seconds`, and `milliseconds` variables, I was able to update the time. For progress bar, I took the work time by `user` and subtracted it to the time on the `screen`, which gave me the `elapsed time`. To get the progress bar to move, I change its width:
