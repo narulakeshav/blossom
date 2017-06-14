@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    
+    <!-- Favicon and Title-->
+    <title id="page-title">Blossom</title>
+    <link rel="shortcut icon" href="logo.png">
+    
+    <!-- META TAGS-->
+    <meta property="og:title" content="Blossom">
+    <meta property="og:description" content="Blossom is a pomodoro clock application that helps you manage time, by allowing you to work for 25 minutes, followed by a 5 minutes of break time. You can also set work and break time accordingly and alarm will ring when time is over.">
+    <meta property="og:site_name" content="NarulaKeshav">
+    <meta property="og:url" content="http://narulakeshav.com/app/blossom">
+    <meta property="og:image" content="http://i.imgur.com/bEPZ8MB.jpg">
+    
+    <!-- TWITTER CARD META TAGS-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NarulaKeshav">
+    <meta name="twitter:creator" content="@NarulaKeshav">
+    <meta name="twitter:title" content="Blossom">
+    <meta name="twitter:description" content="Blossom is a pomodoro clock application that helps you manage time, by allowing you to work for 25 minutes, followed by a 5 minutes of break time. You can also set work and break time accordingly and alarm will ring when time is over.">
+    <meta name="twitter:image" content="http://i.imgur.com/bEPZ8MB.jpg">
+
+    <!-- CSS CDNs-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    
+    <!-- MY CSS FILE-->
+    <link rel="stylesheet" href="./scss/design.css" media="all">
+  </head>
+  <body><img src="pic.png" class="logo img-responsive">
+    <div class="progress">
+      <div role="progressbar" id="timer-bar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;" class="progress-bar"></div>
+    </div>
+    <div class="col-md-12">
+      <div align="center" class="col-md-12">
+        <button id="reset"><span class="fa fa-repeat"></span></button>
+      </div>
+      <div class="col-md-12">
+        <p id="main-time" class="wow bounceInDown">25:00<span id="ms">00</span></p>
+        <div class="col-sm-8 col-sm-offset-2">
+          <div align="center" class="col-sm-12">
+            <div data-wow-delay="0.5s" align="right" class="side wow bounceIn">
+              <p class="work-for">Work For</p>
+              <input id="work" type="number" maxlength="2" placeholder="25" min="1" max="60" class="key-button">
+              <p class="work-for">Mins</p>
+            </div>
+            <div data-wow-delay="0.5s" align="left" class="side wow bounceIn">
+              <p class="work-for">Break For</p>
+              <input id="break" type="number" maxlength="2" placeholder="25" min="1" max="60" class="key-button">
+              <p class="work-for">Mins</p>
+            </div>
+          </div>
+        </div>
+        <div align="center" class="col-md-8 col-md-offset-2">
+          <button id="start-stop" class="btn-start wow bounceInUp"> <span id="btn-text">start</span></button>
+          <button id="restart" class="btn-restart">Restart</button>
+          <audio id="audio" src="alarm.mp3"></audio>
+        </div>
+      </div>
+    </div><a href="https://github.com/NarulaKeshav/blossom" target="_blank" class="btn-repo"><span class="fa fa-github fa-lg">&nbsp; </span> Repository</a>
+  </body>
+  <!-- JAVASCRIPT CDNs-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <!-- MY JAVSCRIPT FILE-->
+  <script src="./js/timer.js"></script>
+</html>
